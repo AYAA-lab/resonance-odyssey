@@ -1203,11 +1203,16 @@
                     tile.id = `tile-${i}`;
                     tile.style.gridRow = gridCoords[i][0];
                     tile.style.gridColumn = gridCoords[i][1];
-                    let inner = `<div class="tile-header"></div>`;
+                    let inner = `<div class="tile-header"></div><span style="z-index: 10;">${city.name}</span>`;
+
+                    // For Jakarta, use the raw GitHub content URL as a background image
                     if (city.name === "Jakarta") {
-                        inner += `<img src="https://github.com/AYAA-lab/resonance-odyssey/blob/0e31389538a02c42684025cbc04d8fb04add8b76/JAKARTA.png" alt="Jakarta" style="width:60%;height:auto;margin-top:6px;object-fit:contain;">`;
+                        tile.style.backgroundImage = 'url(https://raw.githubusercontent.com/AYAA-lab/resonance-odyssey/0e31389538a02c42684025cbc04d8fb04add8b76/JAKARTA.png)';
+                        tile.style.backgroundRepeat = 'no-repeat';
+                        tile.style.backgroundSize = 'contain';
+                        tile.style.backgroundPosition = 'center 45%';
                     }
-                    inner += `<span style="z-index: 10;">${city.name}</span>`;
+
                     tile.innerHTML = inner;
                     board.appendChild(tile);
             });
