@@ -1198,13 +1198,18 @@
             cityData.forEach((city, i) => {
                 if (i === 0) return;
                 
-                const tile = document.createElement('div');
-                tile.className = `tile ${city.side === 'corner' ? 'corner-tile' : city.side}`;
-                tile.id = `tile-${i}`;
-                tile.style.gridRow = gridCoords[i][0];
-                tile.style.gridColumn = gridCoords[i][1];
-                tile.innerHTML = `<div class="tile-header"></div><span style="z-index: 10;">${city.name}</span>`;
-                board.appendChild(tile);
+                    const tile = document.createElement('div');
+                    tile.className = `tile ${city.side === 'corner' ? 'corner-tile' : city.side}`;
+                    tile.id = `tile-${i}`;
+                    tile.style.gridRow = gridCoords[i][0];
+                    tile.style.gridColumn = gridCoords[i][1];
+                    let inner = `<div class="tile-header"></div>`;
+                    if (city.name === "Jakarta") {
+                        inner += `<img src="https://github.com/AYAA-lab/resonance-odyssey/blob/0e31389538a02c42684025cbc04d8fb04add8b76/JAKARTA.png" alt="Jakarta" style="width:60%;height:auto;margin-top:6px;object-fit:contain;">`;
+                    }
+                    inner += `<span style="z-index: 10;">${city.name}</span>`;
+                    tile.innerHTML = inner;
+                    board.appendChild(tile);
             });
         }
 
