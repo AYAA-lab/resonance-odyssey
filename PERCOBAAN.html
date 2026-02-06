@@ -1059,14 +1059,22 @@
         };
 
         const cityData = [
-            { name: "Mulai", side: "corner" }, { name: "Jakarta", side: "side-top" },
-            { name: "Bandung", side: "side-top" }, { name: "Cirebon", side: "side-top" },
-            { name: "Jogja", side: "corner" }, { name: "Solo", side: "side-right" },
-            { name: "Surabaya", side: "side-right" }, { name: "Bali", side: "side-right" },
-            { name: "Lombok", side: "corner" }, { name: "Makassar", side: "side-bottom" },
-            { name: "Manado", side: "side-bottom" }, { name: "Ambon", side: "side-bottom" },
-            { name: "Ternate", side: "corner" }, { name: "Papua", side: "side-left" },
-            { name: "Kalimantan", side: "side-left" }, { name: "Aceh", side: "side-left" }
+            { name: "Mulai", side: "corner" },
+            { name: "Jakarta", side: "side-top", image: "https://raw.githubusercontent.com/AYAA-lab/resonance-odyssey/0e31389538a02c42684025cbc04d8fb04add8b76/JAKARTA.png" },
+            { name: "Bandung", side: "side-top" },
+            { name: "Cirebon", side: "side-top" },
+            { name: "Jogja", side: "corner" },
+            { name: "Solo", side: "side-right" },
+            { name: "Surabaya", side: "side-right" },
+            { name: "Bali", side: "side-right" },
+            { name: "Lombok", side: "corner" },
+            { name: "Makassar", side: "side-bottom" },
+            { name: "Manado", side: "side-bottom" },
+            { name: "Ambon", side: "side-bottom" },
+            { name: "Ternate", side: "corner" },
+            { name: "Papua", side: "side-left" },
+            { name: "Kalimantan", side: "side-left" },
+            { name: "Aceh", side: "side-left" }
         ];
 
         const cityQuestions = {
@@ -1205,12 +1213,15 @@
                     tile.style.gridColumn = gridCoords[i][1];
                     let inner = `<div class="tile-header"></div><span style="z-index: 10;">${city.name}</span>`;
 
-                    // For Jakarta, use the raw GitHub content URL as a background image
-                    if (city.name === "Jakarta") {
-                        tile.style.backgroundImage = 'url(https://raw.githubusercontent.com/AYAA-lab/resonance-odyssey/0e31389538a02c42684025cbc04d8fb04add8b76/JAKARTA.png)';
+                    // If city provides an image property, use it as background and fit it inside the tile
+                    if (city.image) {
+                        tile.style.backgroundImage = `url(${city.image})`;
                         tile.style.backgroundRepeat = 'no-repeat';
-                        tile.style.backgroundSize = 'contain';
-                        tile.style.backgroundPosition = 'center 45%';
+                        tile.style.backgroundSize = 'cover';
+                        tile.style.backgroundPosition = 'center';
+
+                        // Slightly dim the image to keep the city name readable
+                        tile.style.position = 'relative';
                     }
 
                     tile.innerHTML = inner;
